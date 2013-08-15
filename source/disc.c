@@ -40,17 +40,29 @@ The list is terminated by a NULL/NULL entry.
 /* ====================== Xenon ====================== */
 #if   defined (LIBXENON)
 extern DISC_INTERFACE xenon_ata_ops;
-extern DISC_INTERFACE usb2mass_ops;
+extern DISC_INTERFACE usb2mass_ops_0;
+extern DISC_INTERFACE usb2mass_ops_1;
+extern DISC_INTERFACE usb2mass_ops_2;
 
 static const DISC_INTERFACE* get_io_ata(void) {
 	return &xenon_ata_ops;
 }
-static const DISC_INTERFACE* get_io_usbstorage(void) {
-	return &usb2mass_ops;
+static const DISC_INTERFACE* get_io_usbstorage_0(void) {
+	return &usb2mass_ops_0;
+}
+
+static const DISC_INTERFACE* get_io_usbstorage_1(void) {
+        return &usb2mass_ops_1;
+}
+
+static const DISC_INTERFACE* get_io_usbstorage_2(void) {
+        return &usb2mass_ops_2;
 }
 
 const INTERFACE_ID _FAT_disc_interfaces[] = {
-	{"uda", &get_io_usbstorage},
+	{"uda", &get_io_usbstorage_0},
+        {"udb", &get_io_usbstorage_1},
+        {"udc", &get_io_usbstorage_2},
 	{"sda", &get_io_ata},
 	{NULL, NULL}
 };	
@@ -64,8 +76,16 @@ const INTERFACE_ID _FAT_disc_interfaces[] = {
 static const DISC_INTERFACE* get_io_wiisd (void) {
 	return &__io_wiisd;
 }
-static const DISC_INTERFACE* get_io_usbstorage (void) {
-	return &__io_usbstorage;
+static const DISC_INTERFACE* get_io_usbstorage_0 (void) {
+	return &__io_usbstorage_0;
+}
+
+static const DISC_INTERFACE* get_io_usbstorage_1 (void) {
+        return &__io_usbstorage_1;
+}
+
+static const DISC_INTERFACE* get_io_usbstorage_2 (void) {
+        return &__io_usbstorage_2;
 }
 
 static const DISC_INTERFACE* get_io_gcsda (void) {
